@@ -1,6 +1,6 @@
 package com.encanto_boto.saci_flow.repository;
 
-import com.encanto_boto.saci_flow.RowMapper.UserRowMapper;
+import com.encanto_boto.saci_flow.row.mapper.UserRowMapper;
 import com.encanto_boto.saci_flow.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

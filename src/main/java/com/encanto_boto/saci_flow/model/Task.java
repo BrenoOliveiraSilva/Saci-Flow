@@ -1,5 +1,8 @@
 package com.encanto_boto.saci_flow.model;
 
+import com.encanto_boto.saci_flow.dto.UserDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -21,6 +24,14 @@ public class Task {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    // USUÁRIO
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @Transient
+    private UserDTO userDTO;
 
     // GETTERS AND SETTERS
 
@@ -70,5 +81,22 @@ public class Task {
     }
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    // Usuário
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    // Usuário DTO
+    public UserDTO getUserDTO() {
+        return userDTO;
+    }
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
     }
 }

@@ -1,4 +1,4 @@
-package com.encanto_boto.saci_flow.RowMapper;
+package com.encanto_boto.saci_flow.row.mapper;
 
 import com.encanto_boto.saci_flow.model.User;
 import org.springframework.jdbc.core.RowMapper;

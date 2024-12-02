@@ -29,6 +29,12 @@ public class TaskController {
         return ResponseEntity.ok(taskService.findAll());
     }
 
+    // Método para buscar todas as tarefas de um usuário
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Task>> findAllByUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(taskService.findAllByUser(userId));
+    }
+
     // Método para buscar uma tarefa pelo ID
     @GetMapping("/{id}")
     public ResponseEntity<Task> findById(@PathVariable Long id) {
@@ -52,6 +58,13 @@ public class TaskController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         taskService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // Método para deletar todas as tarefas
+    @DeleteMapping("/all")
+    public ResponseEntity<Void> deleteAll() {
+        taskService.deleteAll();
         return ResponseEntity.noContent().build();
     }
 }

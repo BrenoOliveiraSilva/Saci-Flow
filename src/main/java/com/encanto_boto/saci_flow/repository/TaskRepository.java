@@ -1,6 +1,6 @@
 package com.encanto_boto.saci_flow.repository;
 
-import com.encanto_boto.saci_flow.RowMapper.TaskRowMapper;
+import com.encanto_boto.saci_flow.row.mapper.TaskRowMapper;
 import com.encanto_boto.saci_flow.model.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,18 +20,30 @@ public class TaskRepository {
         LocalDateTime now = LocalDateTime.now();
         task.setCreatedAt(now);
         task.setUpdatedAt(now);
-        jdbcTemplate.update("INSERT INTO tasks (title, description, completed, created_at, updated_at) VALUES (?, ?, ?, ?, ?)", task.getTitle(), task.getDescription(), task.isCompleted(), task.getCreatedAt(), task.getUpdatedAt());
+        // Método antigo para criar tarefas
+//        jdbcTemplate.update("INSERT INTO tasks (title, description, completed, created_at, updated_at) VALUES (?, ?, ?, ?, ?)", task.getTitle(), task.getDescription(), task.isCompleted(), task.getCreatedAt(), task.getUpdatedAt());
+//        return task;
+        //Novo método para criar tarefas
+        jdbcTemplate.update("INSERT INTO tasks (title, description, completed, created_at, updated_at, user_id) VALUES (?, ?, ?, ?, ?, ?)", task.getTitle(), task.getDescription(), task.isCompleted(), task.getCreatedAt(), task.getUpdatedAt(), task.getUser().getId());
         return task;
     }
 
     // Método para buscar todas as tarefas
     public List<Task> findAll() {
-        return jdbcTemplate.query("SELECT * FROM tasks", new TaskRowMapper());
+        String sql = "SELECT t.*, u.username FROM tasks t JOIN users u ON t.user_id = u.id";
+        return jdbcTemplate.query(sql, new TaskRowMapper());
+    }
+
+    // Método para buscar todas as tarefas de um usuário
+    public List<Task> findAllByUser(Long userId) {
+        String sql = "SELECT t.*, u.username FROM tasks t JOIN users u ON t.user_id = u.id WHERE t.user_id = ?";
+        return jdbcTemplate.query(sql, new TaskRowMapper(), userId);
     }
 
     // Método para buscar uma tarefa pelo ID
     public Task findById(Long id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM tasks WHERE id = ?", new TaskRowMapper(), id);
+        String sql = "SELECT t.*, u.username FROM tasks t JOIN users u ON t.user_id = u.id WHERE t.id = ?";
+        return jdbcTemplate.queryForObject(sql, new TaskRowMapper(), id);
     }
 
     // Método para editar uma tarefa pelo ID

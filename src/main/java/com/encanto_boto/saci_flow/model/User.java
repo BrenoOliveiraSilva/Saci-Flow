@@ -2,6 +2,8 @@ package com.encanto_boto.saci_flow.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -12,6 +14,10 @@ public class User {
     private String username;
     private String mail;
     private String password;
+
+    // TAREFAS
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Task> tasks;
 
     // GETTERS AND SETTERS
 
@@ -45,5 +51,13 @@ public class User {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    // Tarefas
+    public List<Task> getTasks() {
+        return tasks;
+    }
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }

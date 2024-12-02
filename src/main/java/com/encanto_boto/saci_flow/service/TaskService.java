@@ -24,6 +24,11 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
+    // Método para buscar todas as tarefas de um usuário
+    public List<Task> findAllByUser(Long userId) {
+        return taskRepository.findAllByUser(userId);
+    }
+
     // Método para buscar uma tarefa pelo ID
     public Optional<Task> findById(Long id) {
         return Optional.ofNullable(taskRepository.findById(id));
