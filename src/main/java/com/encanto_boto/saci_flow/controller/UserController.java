@@ -5,6 +5,7 @@ import com.encanto_boto.saci_flow.model.User;
 import com.encanto_boto.saci_flow.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +19,13 @@ public class UserController {
 
     // Método para criar usuários
     @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createUser(@RequestBody User user) {
         userService.createUser(user);
-        return ResponseEntity.ok(user);
     }
 
     // Método para buscar todos os usuários
-    @GetMapping("/all")
+    @GetMapping("/getAll")
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok(userService.findAll());
     }
@@ -61,12 +62,12 @@ public class UserController {
 
     // Método para editar um usuário pelo ID
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) {
+    @ResponseStatus(HttpStatus.OK)
+    public void updateUser(@PathVariable Long id, @RequestBody User user) {
         try {
             userService.updateUser(id, user.getUsername(), user.getMail(), user.getPassword());
-            return ResponseEntity.ok(user);
         } catch (EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
+            e.printStackTrace();
         }
     }
 
@@ -82,7 +83,7 @@ public class UserController {
     }
 
     // Método para deletar todos os usuários
-    @DeleteMapping("/all")
+    @DeleteMapping("/deleteAll")
     public ResponseEntity<Void> deleteAll() {
         userService.deleteAll();
         return ResponseEntity.noContent().build();

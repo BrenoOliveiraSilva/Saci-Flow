@@ -15,7 +15,7 @@ public class TaskRepository {
     JdbcTemplate jdbcTemplate;
 
     // Método para criar tarefas
-    public Task createTask(Task task) {
+    public void createTask(Task task) {
         task.setCompleted(false);
         LocalDateTime now = LocalDateTime.now();
         task.setCreatedAt(now);
@@ -25,7 +25,6 @@ public class TaskRepository {
 //        return task;
         //Novo método para criar tarefas
         jdbcTemplate.update("INSERT INTO tasks (title, description, completed, created_at, updated_at, user_id) VALUES (?, ?, ?, ?, ?, ?)", task.getTitle(), task.getDescription(), task.isCompleted(), task.getCreatedAt(), task.getUpdatedAt(), task.getUser().getId());
-        return task;
     }
 
     // Método para buscar todas as tarefas

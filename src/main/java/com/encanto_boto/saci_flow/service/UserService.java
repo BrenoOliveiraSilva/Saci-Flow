@@ -13,8 +13,8 @@ public class UserService {
     private UserRepository userRepository;
 
     // Método para criar usuários
-    public User createUser(User user) {
-        return userRepository.createUser(user);
+    public void createUser(User user) {
+        userRepository.createUser(user);
     }
 
     // Método para buscar todos os usuários

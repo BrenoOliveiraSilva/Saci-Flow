@@ -22,8 +22,9 @@ public class TaskRowMapper implements RowMapper<Task> {
         User user = new User();
 //        user.setId(rs.getLong("user_id"));
         user.setUsername(rs.getString("username"));
+        user.setId(rs.getLong("user_id"));
 //        task.setUser(user);
-        task.setUserDTO(new UserDTO(user.getUsername()));
+        task.setUserDTO(new UserDTO(user.getId(), user.getUsername()));
 
         return task;
     }

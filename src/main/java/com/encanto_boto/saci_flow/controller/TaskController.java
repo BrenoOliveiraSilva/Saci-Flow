@@ -5,6 +5,7 @@ import com.encanto_boto.saci_flow.model.User;
 import com.encanto_boto.saci_flow.service.TaskService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +19,13 @@ public class TaskController {
 
     // Método para criar uma tarefa
     @PostMapping("/create")
-    public ResponseEntity<Task> createTask(@RequestBody Task task) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createTask(@RequestBody Task task) {
         taskService.createTask(task);
-        return ResponseEntity.ok(task);
     }
 
     // Método para buscar todas as tarefas
-    @GetMapping("/all")
+    @GetMapping("/getAll")
     public ResponseEntity<List<Task>> findAll() {
         return ResponseEntity.ok(taskService.findAll());
     }
@@ -45,12 +46,12 @@ public class TaskController {
 
     // Método para editar uma tarefa pelo ID
     @PutMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {
+    @ResponseStatus(HttpStatus.OK)
+    public void updateTask(@PathVariable Long id, @RequestBody Task task) {
         try {
             taskService.updateTask(id, task.getTitle(), task.getDescription(), task.isCompleted(), task.getCreatedAt(), task.getUpdatedAt());
-            return ResponseEntity.ok(task);
         } catch (Exception e) {
-            return ResponseEntity.notFound().build();
+            e.printStackTrace();
         }
     }
 
@@ -62,7 +63,7 @@ public class TaskController {
     }
 
     // Método para deletar todas as tarefas
-    @DeleteMapping("/all")
+    @DeleteMapping("/deleteAll")
     public ResponseEntity<Void> deleteAll() {
         taskService.deleteAll();
         return ResponseEntity.noContent().build();

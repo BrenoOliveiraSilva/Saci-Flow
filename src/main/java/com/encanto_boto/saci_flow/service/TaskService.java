@@ -15,8 +15,8 @@ public class TaskService {
     private TaskRepository taskRepository;
 
     // Método criar uma tarefa
-    public Task createTask(Task task) {
-        return taskRepository.createTask(task);
+    public void createTask(Task task) {
+        taskRepository.createTask(task);
     }
 
     // Método para buscar todas as tarefas
