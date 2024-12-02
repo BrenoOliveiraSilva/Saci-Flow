@@ -17,6 +17,11 @@ public class UserService {
         userRepository.createUser(user);
     }
 
+    // Método para fazer login
+    public boolean login(User user) {
+        return userRepository.login(user);
+    }
+
     // Método para buscar todos os usuários
     public List<User> findAll() {
         return userRepository.findAll();

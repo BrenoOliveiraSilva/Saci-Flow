@@ -15,7 +15,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/tasks/**", "/users/**").permitAll() // Permitir acesso anônimo aos endpoints de tarefas e usuários
+                                .requestMatchers("/tasks/**", "/users/**", "/login/**").permitAll() // Permitir acesso anônimo aos endpoints de tarefas e usuários
 
                                 .anyRequest().authenticated()
                 )

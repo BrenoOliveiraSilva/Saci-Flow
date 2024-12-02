@@ -21,6 +21,12 @@ public class UserRepository {
         jdbcTemplate.update("INSERT INTO users (username, mail, password) VALUES (?, ?, ?)", user.getUsername(), user.getMail(), user.getPassword());
     }
 
+    // Método para fazer login
+    public boolean login(User user) {
+        User userDB = jdbcTemplate.queryForObject("SELECT * FROM users WHERE username = ? AND password = ?", new UserRowMapper(), user.getUsername(), user.getPassword());
+        return userDB != null;
+    }
+
     // Método para buscar todos os usuários
 
     public List<User> findAll() {
@@ -89,4 +95,5 @@ public class UserRepository {
     public void deleteAll() {
         jdbcTemplate.update("DELETE FROM users");
     }
+
 }

@@ -1,9 +1,7 @@
 package com.encanto_boto.saci_flow.controller;
 
 import com.encanto_boto.saci_flow.model.Task;
-import com.encanto_boto.saci_flow.model.User;
 import com.encanto_boto.saci_flow.service.TaskService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
