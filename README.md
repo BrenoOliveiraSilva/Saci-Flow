@@ -94,9 +94,9 @@ Saci Flow é uma aplicação Spring Boot projetada para gerenciar usuários. Est
 
 ### Autores
 
-- Breno Oliveira da Silva
-- Bruno Oliveira Melo
-- Felipe Miranda Santana
+- Breno Oliveira da Silva RA 12723131992
+- Bruno Oliveira Melo RA 12723111120
+- Felipe Miranda Santana RA 1271716805
 
 ### Licença
 
