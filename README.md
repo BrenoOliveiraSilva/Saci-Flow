@@ -1,6 +1,6 @@
 # Saci Flow
 
-Saci Flow é uma aplicação Spring Boot projetada para gerenciar tarefas. Este projeto faz parte de um trabalho universitário.
+Saci Flow é uma aplicação Spring Boot projetada para gerenciar tarefas, que pertencem a usuários. Este projeto faz parte da A3.
 
 ## Começando
 
