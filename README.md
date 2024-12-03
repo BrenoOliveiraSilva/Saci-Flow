@@ -38,6 +38,8 @@ Saci Flow é uma aplicação Spring Boot projetada para gerenciar usuários. Est
 
 ### Endpoints da API
 
+#### Usuário Endpoints
+
 - **Criar Usuário**
     - **URL:** `/users/create`
     - **Método:** `POST`
@@ -85,6 +87,77 @@ Saci Flow é uma aplicação Spring Boot projetada para gerenciar usuários. Est
 - **Deletar Todos os Usuários**
     - **URL:** `/users/deleteAll`
     - **Método:** `DELETE`
+
+#### Task Endpoints
+
+- **Criar Tarefa**
+    - **URL:** `/tasks/create`
+    - **Método:** `POST`
+    - **Descrição:** Cria uma nova tarefa.
+    - **Corpo da Requisição:**
+        ```json
+        {
+            "title": "string",
+            "description": "string",
+            "completed": "boolean",
+            "createdAt": "string",
+            "updatedAt": "string"
+        }
+        ```
+
+- **Buscar Todas as Tarefas**
+    - **URL:** `/tasks/getAll`
+    - **Método:** `GET`
+    - **Descrição:** Retorna todas as tarefas.
+
+- **Buscar Tarefas por Usuário**
+    - **URL:** `/tasks/user/{userId}`
+    - **Método:** `GET`
+    - **Descrição:** Retorna todas as tarefas de um usuário específico.
+
+- **Buscar Tarefa por ID**
+    - **URL:** `/tasks/{id}`
+    - **Método:** `GET`
+    - **Descrição:** Retorna uma tarefa específica pelo ID.
+
+- **Atualizar Tarefa**
+    - **URL:** `/tasks/{id}`
+    - **Método:** `PUT`
+    - **Descrição:** Atualiza uma tarefa específica pelo ID.
+    - **Corpo da Requisição:**
+        ```json
+        {
+            "title": "string",
+            "description": "string",
+            "completed": "boolean",
+            "createdAt": "string",
+            "updatedAt": "string"
+        }
+        ```
+
+- **Deletar Tarefa por ID**
+    - **URL:** `/tasks/{id}`
+    - **Método:** `DELETE`
+    - **Descrição:** Deleta uma tarefa específica pelo ID.
+
+- **Deletar Todas as Tarefas**
+    - **URL:** `/tasks/deleteAll`
+    - **Método:** `DELETE`
+    - **Descrição:** Deleta todas as tarefas.
+
+#### Login Endpoint
+
+- **Login**
+    - **URL:** `/login`
+    - **Método:** `POST`
+    - **Descrição:** Realiza o login de um usuário.
+    - **Corpo da Requisição:**
+        ```json
+        {
+            "username": "string",
+            "password": "string"
+        }
+        ```
 
 ### Construído com
 
